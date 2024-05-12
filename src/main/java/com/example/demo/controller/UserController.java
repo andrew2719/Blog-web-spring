@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 public class UserController {
     @Autowired
@@ -50,6 +52,13 @@ public class UserController {
             return "home";
         }
         return "redirect:/login";
+
+    }
+    @GetMapping("/users")
+    public String listUsers(Model model) {
+        List<User> users = userService.getAllUsers(); // Assuming you have this method in your UserService
+        model.addAttribute("users", users);
+        return "users"; // This is the name of your Thymeleaf template
     }
 }
 
