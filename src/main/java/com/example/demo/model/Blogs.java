@@ -16,11 +16,14 @@ public class Blogs {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     public Blogs() {
         this.dateCreated = new Date();
     }
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -59,5 +62,13 @@ public class Blogs {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
